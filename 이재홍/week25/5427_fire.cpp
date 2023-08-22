@@ -24,6 +24,7 @@ enum BuildingValue {
     VOID = 0,
     WALL = -1,
     FIRE = -1,
+    FIRE_AND_WALL = -1,
     START = 1,
     VISITED = 1
 };
@@ -77,8 +78,8 @@ struct Building {
             for(int dir = 0; dir < DIR; ++dir) {
                 Coordinate fire_next = fire_now + Coordinate::base_dir[dir];
                 if(OutOfBound(fire_next)) {continue;}
-                if(IsTarget(fire_next, WALL)) {continue;}
-                SetTarget(fire_next, WALL);
+                if(IsTarget(fire_next, FIRE_AND_WALL)) {continue;}
+                SetTarget(fire_next, FIRE);
                 fire_queue.push(fire_next);
             }
         }
