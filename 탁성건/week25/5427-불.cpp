@@ -49,7 +49,7 @@ int main(void) {
 		int ans = -1;
 		int cnt = 0;
 
-		while (!fire.empty() || !person.empty()) {
+		while (!person.empty()) {
 			++cnt;
 
 			int sz = fire.size();
