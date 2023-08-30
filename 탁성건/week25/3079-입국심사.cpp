@@ -2,6 +2,8 @@
 #include <vector>
 using namespace std;
 
+constexpr int INF = 21e8;
+
 int main(void) {
 	cin.tie(nullptr)->sync_with_stdio(false);
 
@@ -10,26 +12,23 @@ int main(void) {
 
 	vector<int> T(N);
 
-	int maxT = 0;
+	int minT = INF;
 
 	for (int& t : T) {
 		cin >> t;
-		maxT = maxT > t ? maxT : t;
+		minT = minT < t ? minT : t;
 	}
 
 	long long left = 1;
-	long long right = (long long)M * maxT;
-	long long ans = 1;
+	long long right = static_cast<long long>(M) * minT;
+	long long ans = right;
 
 	while (left <= right) {
 		long long mid = left + (right - left) / 2;
 		long long cnt = 0;
 
-		for (const int& t : T) {
+		for (const int& t : T)
 			cnt += mid / t;
-			if (cnt >= M)
-				break;
-		}
 
 		if (cnt >= M) {
 			ans = mid;
